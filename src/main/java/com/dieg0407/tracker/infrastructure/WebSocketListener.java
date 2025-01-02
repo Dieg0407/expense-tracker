@@ -1,4 +1,4 @@
-package com.dieg0407.tracker;
+package com.dieg0407.tracker.infrastructure;
 
 import java.net.http.WebSocket;
 import java.util.ArrayList;
@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.concurrent.CompletionStage;
 
 public class WebSocketListener implements WebSocket.Listener {
-    private List<String> messages;
+    private final List<String> messages;
     private boolean isClosed;
 
     public WebSocketListener() {
@@ -29,7 +29,7 @@ public class WebSocketListener implements WebSocket.Listener {
         return messages;
     }
 
-    public void waitUntilClosed() throws Exception {
+    public void waitUntilClosed() throws InterruptedException {
         while (!isClosed) {
             Thread.sleep(1000L);
         }

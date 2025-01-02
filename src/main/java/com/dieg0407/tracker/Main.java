@@ -1,5 +1,7 @@
 package com.dieg0407.tracker;
 
+import com.dieg0407.tracker.infrastructure.WebSocketListener;
+
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -32,16 +34,11 @@ public class Main {
         }
         socket.sendText("{ \"config\" : { \"sample_rate\" : " + (int)format.getSampleRate() + " } }", true).get();
 
-        int totalFramesRead = 0;
         int numBytes = 1024 * bytesPerFrame;
-        int numBytesRead = 0;
-        int numFramesRead = 0;
         byte[] audioBytes = new byte[numBytes];
         // Try to read numBytes bytes from the file.
-        while ((numBytesRead = audioInputStream.read(audioBytes)) != -1) {
+        while (audioInputStream.read(audioBytes) != -1) {
             // Calculate the number of frames actually read.
-            numFramesRead = numBytesRead / bytesPerFrame;
-            totalFramesRead += numFramesRead;
             socket.sendBinary(ByteBuffer.wrap(audioBytes), false).get();
         }
         socket.sendBinary(ByteBuffer.wrap(new byte[]{}), true).get();
