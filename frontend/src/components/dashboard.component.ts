@@ -17,8 +17,10 @@ export class DashboardComponent {
                     <button id="logoutBtn">Logout</button>
                 </header>
                 <main class="dashboard-content">
-                    <p>Welcome to your expense tracker dashboard!</p>
-                    <p>This is a protected route. You can only see this if you're logged in.</p>
+                    <div id="summary-container">
+                        <summary-component></summary-component>
+                    </div>
+                    
                 </main>
             </div>
         `;

@@ -2,8 +2,21 @@ import { AuthService } from "@/services/auth.service";
 import { NAVIGATION_EVENT } from "@/types/events";
 
 export class LoginComponent {
-    constructor() {
+    private submitHandler: (e: SubmitEvent) => void;
 
+    constructor() {
+        this.submitHandler = (e: SubmitEvent) => {
+            e.preventDefault();
+            AuthService.login();
+            const event = new CustomEvent(NAVIGATION_EVENT, {
+                detail: {
+                    path: '/dashboard'
+                }
+            });
+
+            this.detachEventListeners();
+            window.dispatchEvent(event);
+        };
     }
 
     public render(): void {
@@ -34,15 +47,13 @@ export class LoginComponent {
         const form = document.getElementById('loginForm');
         if (!form) return;
 
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            AuthService.login();
-            const event = new CustomEvent(NAVIGATION_EVENT, {
-                detail: {
-                    path: '/dashboard'
-                }
-            });
-            window.dispatchEvent(event);
-        });
+        form.addEventListener('submit', this.submitHandler);
+    }
+
+    private detachEventListeners(): void {
+        const form = document.getElementById('loginForm');
+        if (!form) return;
+
+        form.removeEventListener('submit', this.submitHandler);
     }
 } 

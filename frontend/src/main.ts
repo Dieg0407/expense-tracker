@@ -1,11 +1,13 @@
 import { DashboardComponent } from "./components/dashboard.component";
 import { LoginComponent } from "./components/login.component";
 import { Router } from "./utils/router";
+import { setUpCustomElements } from "./components/components";
 
 // Main application entry point
 console.log('Expense Tracker Application Started');
 
 // Initialize components
+setUpCustomElements();
 const app = document.getElementById('app');
 if (!app)
     throw new Error('Root element not found');
