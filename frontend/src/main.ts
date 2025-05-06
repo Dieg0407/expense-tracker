@@ -23,7 +23,8 @@ new Router({
         },
         {
             path: '/dashboard',
-            component: () => new DashboardComponent().render()
+            component: () => new DashboardComponent().render(),
+            isProtected: true
         }
     ]
 });

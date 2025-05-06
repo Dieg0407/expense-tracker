@@ -33,6 +33,7 @@ export class Router {
         }
 
         if (route.isProtected && !AuthService.isAuthenticated()) {
+            this.navigate('/login');
             return;
         }
 
