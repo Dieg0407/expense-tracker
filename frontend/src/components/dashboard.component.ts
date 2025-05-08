@@ -18,9 +18,8 @@ export class DashboardComponent {
                 </header>
                 <main class="dashboard-content">
                     <div id="summary-container">
-                        <summary-component></summary-component>
+                        <summary-component id="summary-1"></summary-component>
                     </div>
-                    
                 </main>
             </div>
         `;

@@ -22,3 +22,33 @@ h1 {
     color: #2c3e50;
     margin-bottom: 1rem;
 }
+
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dashboard-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Make this a card */
+.summary-container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    margin-bottom: 2rem;
+    /* Center the card and make it only take needed space */
+    width: fit-content;
+    max-width: 100%;
+}
